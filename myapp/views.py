@@ -101,7 +101,12 @@ def Appointmentfun(request):
             user_obj.Patient_detail=request.user
             user_obj.save()
             subject = 'Appointment Book'
-            message = f'Hi {request.user.first_name}, your Appointment book in {Medical_Specialties} Department Your time slot booK { Date_and_time}'
+            # message = f'Hi {request.user.first_name}, your Appointment book in {Medical_Specialties} Department Your time slot booK { Date_and_time}'
+            message = render_to_string('accounts/appointment_email.html', {
+                'user': request.user,
+                'Medical_Specialties':Medical_Specialties,
+                'Date_and_time':Date_and_time
+            })
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [request.user.email ]
             send_mail( subject, message, email_from, recipient_list )

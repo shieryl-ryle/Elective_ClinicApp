@@ -1,0 +1,101 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}Appointment{% endblock title %}
+{% block content %}
+
+<h3 class="text-center mt-4">Welcome, {{ request.user.first_name }}</h3>
+<div class="text-center my-4">
+    <a href="{% url 'appd' %}" class="btn btn-danger">View Your Appointment</a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Book an Appointment</h2>
+            <form action="{% url 'appointment' %}" method="POST" class="shadow p-4 bg-white rounded">
+                {% csrf_token %}
+                {% include 'message.html' %}
+                
+                <!-- Age Field -->
+                <div class="form-group">
+                    <label for="id_Age" class="font-weight-bold">Age:</label>
+                    <input 
+                        type="number" 
+                        name="Age" 
+                        id="id_Age" 
+                        class="form-control" 
+                        required 
+                        placeholder="Enter your age">
+                </div>
+                
+                <!-- Gender Field -->
+                <div class="form-group">
+                    <select 
+                        name="Gender" 
+                        id="id_Gender" 
+                        class="form-control" 
+                        required>
+                        <option value="" selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                
+                <!-- Medical Specialties Field -->
+                <div class="form-group">
+                    <select 
+                        name="Medical_Specialties" 
+                        id="id_Medical_Specialties" 
+                        class="form-control" 
+                        required>
+                        <option value="" selected>Select Medical Specialties:</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                        <option value="Internal Medicine">Internal Medicine</option>
+                        <option value="Obstetrics and Gynecology">Obstetrics and Gynecology</option>
+                        <option value="Dermatology">Dermatology</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="Radiology">Radiology</option>
+                        <option value="General Surgery">General Surgery</option>
+                        <option value="Ophthalmology">Ophthalmology</option>
+                    </select>
+                </div>
+                
+                <!-- Date and Time Field -->
+                <div class="form-group">
+                    {% comment %} <label for="datetimepicker3" class="font-weight-bold">Date and Time:</label> {% endcomment %}
+                    <input 
+                        type="text" 
+                        name="Date_and_time" 
+                        id="datetimepicker3" 
+                        class="form-control" 
+                        required 
+                        placeholder="Pick a date and time">
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Include Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Include Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+    // Initialize Flatpickr for the Date and Time input field
+    flatpickr("#datetimepicker3", {
+        enableTime: true,            // Enables time selection
+        dateFormat: "Y-m-d H:i",    // Specifies the date-time format
+        defaultDate: "today",       // Defaults to today's date
+        minDate: "today",           // Sets the minimum selectable date to today
+        time_24hr: true,            // Optional: Use 24-hour time format
+    });
+</script>
+
+{% endblock %}

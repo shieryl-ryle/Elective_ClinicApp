@@ -1,0 +1,76 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}Appointment{% endblock title %}
+{% block content %}
+
+<h2 class="text-center my-4">Appointment History</h2>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in App %}
+                <tr>
+                    <td><strong>Name:</strong></td>
+                    <td>{{i.Patient_detail.first_name}} {{i.Patient_detail.last_name}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Age:</strong></td>
+                    <td>{{i.Age}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Gender:</strong></td>
+                    <td>{{i.Gender}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Medical Department:</strong></td>
+                    <td>{{i.Medical_Specialties}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Date and Time:</strong></td>
+                    <td>{{i.Date_and_time}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Custom CSS for better styling -->
+<style>
+    .table {
+        width: 100%;
+        margin: 20px 0;
+        background-color: #f9f9f9;
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        vertical-align: middle;
+    }
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tbody tr:hover {
+        background-color: #ddd;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+</style>
+
+{% endblock %}

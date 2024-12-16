@@ -3,52 +3,51 @@
 {% block title %}Appointment{% endblock title %}
 {% block content %}
 
-<h3 class="text-center mt-4">Welcome, {{ request.user.first_name }}</h3>
+<h3 class="text-center mt-4 fw-bold">Welcome, {{ request.user.first_name }}</h3>
 <div class="text-center my-4">
-    <a href="{% url 'appd' %}" class="btn btn-danger">View Your Appointment</a>
+    <a href="{% url 'appd' %}" class="btn btn-danger btn-lg px-4">View Your Appointment</a>
 </div>
 
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Book an Appointment</h2>
-            <form action="{% url 'appointment' %}" method="POST" class="shadow p-4 bg-white rounded">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+            <h2 class="text-center mb-4 text-primary">Book an Appointment</h2>
+            <form action="{% url 'appointment' %}" method="POST" class="shadow-lg p-4 bg-light rounded-3 border form-bg">
                 {% csrf_token %}
                 {% include 'message.html' %}
-                
+
                 <!-- Age Field -->
-                <div class="form-group">
-                    <label for="id_Age" class="font-weight-bold">Age:</label>
+                <div class="form-group mb-4">
                     <input 
                         type="number" 
                         name="Age" 
                         id="id_Age" 
-                        class="form-control" 
+                        class="form-control form-control-lg" 
                         required 
                         placeholder="Enter your age">
                 </div>
-                
+
                 <!-- Gender Field -->
-                <div class="form-group">
+                <div class="form-group mb-4">
                     <select 
                         name="Gender" 
                         id="id_Gender" 
-                        class="form-control" 
+                        class="form-select form-select-lg" 
                         required>
                         <option value="" selected>Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
                 </div>
-                
+
                 <!-- Medical Specialties Field -->
-                <div class="form-group">
+                <div class="form-group mb-4">
                     <select 
                         name="Medical_Specialties" 
                         id="id_Medical_Specialties" 
-                        class="form-control" 
+                        class="form-select form-select-lg" 
                         required>
-                        <option value="" selected>Select Medical Specialties:</option>
+                        <option value="" selected>Select Medical Specialties</option>
                         <option value="Orthopedics">Orthopedics</option>
                         <option value="Internal Medicine">Internal Medicine</option>
                         <option value="Obstetrics and Gynecology">Obstetrics and Gynecology</option>
@@ -59,22 +58,21 @@
                         <option value="Ophthalmology">Ophthalmology</option>
                     </select>
                 </div>
-                
+
                 <!-- Date and Time Field -->
-                <div class="form-group">
-                    {% comment %} <label for="datetimepicker3" class="font-weight-bold">Date and Time:</label> {% endcomment %}
+                <div class="form-group mb-4">
                     <input 
                         type="text" 
                         name="Date_and_time" 
                         id="datetimepicker3" 
-                        class="form-control" 
+                        class="form-control form-control-lg" 
                         required 
-                        placeholder="Pick a date and time">
+                        placeholder="Select date and time">
                 </div>
-                
+
                 <!-- Submit Button -->
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
                 </div>
             </form>
         </div>
@@ -94,8 +92,60 @@
         dateFormat: "Y-m-d H:i",    // Specifies the date-time format
         defaultDate: "today",       // Defaults to today's date
         minDate: "today",           // Sets the minimum selectable date to today
-        time_24hr: true,            // Optional: Use 24-hour time format
+        time_24hr: true              // Optional: Use 24-hour time format
     });
 </script>
 
+<style>
+    /* General Styling */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px; /* Uniform base font size */
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .form-label {
+        font-size: 1rem; /* Uniform label font size */
+    }
+
+    .form-control, .form-select {
+        font-size: 1rem; /* Uniform input and select font size */
+        margin-bottom: 1.5rem; /* Consistent spacing */
+        padding: 0.75rem; /* Uniform padding */
+        height: auto; /* Ensures consistent height */
+        width: 100%; /* Full-width fields */
+        border-radius: 0.25rem; /* Rounded corners */
+    }
+
+    .btn {
+        font-size: 1rem; /* Uniform button font size */
+    }
+
+    h2, h3 {
+        font-size: 1.75rem; /* Uniform heading font size */
+    }
+
+    form {
+        margin-bottom: 5rem; /* Adds spacing from footer */
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem; /* Consistent spacing for form groups */
+    }
+
+    .shadow-lg {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for better visual appeal */
+    }
+    .form-bg {
+        background-color:rgb(11, 155, 177); /* Light blue background for forms */
+        border-radius: 0.5rem; /* Optional: Rounds the corners */
+        padding: 1.5rem; /* Optional: Adds more padding */
+    }
+</style>
 {% endblock %}

@@ -62,9 +62,9 @@
                 <li class="nav-item">
                    <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                 </li>
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                    <a class="nav-link" href="#"><img src="{% static 'images/search-icon.png' %}"></a>
-                </li>
+                </li> {% endcomment %}
              </ul>
           </div>
        </nav>
@@ -80,7 +80,7 @@
         <div class="container">
            <div class="row">
               <div class="col-lg-3 col-sm-6">
-                 <div class="footer_logo"><a href="index.html"><img src="{% static 'elective/logo.png' %}"></a></div>
+                 <div class="footer_logo"><a href="index.html"><img src="{% static 'elective/nobg.png' %}" style="width: 100px; height: 100px;"></a></div>
                  <h1 class="adderss_text">Contact Us</h1>
                  <div class="map_icon"><img src="{% static 'images/map-icon.png' %}"><span class="paddlin_left_0">Page when looking at its</span></div>
                  <div class="map_icon"><img src="{% static 'images/call-icon.png' %}"><span class="paddlin_left_0">+7586656566</span></div>
